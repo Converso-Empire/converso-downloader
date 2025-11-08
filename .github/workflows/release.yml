@@ -1,0 +1,118 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v2.1.3
+
+jobs:
+  build-and-release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            artifact_name: Converso-Downloader-Windows
+            asset_extension: .exe
+          - os: ubuntu-latest
+            artifact_name: Converso-Downloader-Linux
+            asset_extension: ''
+          - os: macos-latest
+            artifact_name: Converso-Downloader-macOS
+            asset_extension: ''
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Install FFmpeg (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install ffmpeg -y
+          
+      - name: Install FFmpeg (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install FFmpeg (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install ffmpeg
+
+      - name: Build executable (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          pyinstaller converso-downloader.spec
+
+      - name: Build executable (Linux/macOS)
+        if: matrix.os != 'windows-latest'
+        run: |
+          pyinstaller converso-downloader.spec
+
+      - name: Create release package (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          mkdir release
+          mkdir release\ffmpeg
+          copy dist\ConversoDownloader.exe release\
+          copy README.md release\
+          copy "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe" release\ffmpeg\
+          copy "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe" release\ffmpeg\
+          echo FFmpeg binaries included in ffmpeg folder > release\FFMPEG_INCLUDED.txt
+          Compress-Archive -Path release\* -DestinationPath ${{ matrix.artifact_name }}.zip
+
+      - name: Create release package (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          mkdir -p release/ffmpeg
+          cp dist/ConversoDownloader release/
+          chmod +x release/ConversoDownloader
+          cp README.md release/
+          cp /usr/bin/ffmpeg release/ffmpeg/
+          cp /usr/bin/ffprobe release/ffmpeg/
+          chmod +x release/ffmpeg/*
+          echo "FFmpeg binaries included in ffmpeg folder" > release/FFMPEG_INCLUDED.txt
+          cd release && tar -czf ../${{ matrix.artifact_name }}.tar.gz * && cd ..
+
+      - name: Create release package (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          mkdir -p release/ffmpeg
+          cp dist/ConversoDownloader release/
+          chmod +x release/ConversoDownloader
+          cp README.md release/
+          cp $(which ffmpeg) release/ffmpeg/
+          cp $(which ffprobe) release/ffmpeg/
+          chmod +x release/ffmpeg/*
+          echo "FFmpeg binaries included in ffmpeg folder" > release/FFMPEG_INCLUDED.txt
+          cd release && tar -czf ../${{ matrix.artifact_name }}.tar.gz * && cd ..
+
+      - name: Upload Release Asset (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ matrix.artifact_name }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset (Linux/macOS)
+        if: matrix.os != 'windows-latest'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ matrix.artifact_name }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Application Data
+.converso/
+*.log
+
+# Downloads
+Downloads/
+downloads/
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Config files (may contain sensitive data)
+config/local_settings.py
+*.json
+!requirements.txt
+
+# Test files
+test_downloads/
+*.test
+
+# Backup files
+*.bak
+*.backup
