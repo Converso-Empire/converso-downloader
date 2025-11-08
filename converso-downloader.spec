@@ -41,6 +41,7 @@ datas += [('utils', 'utils')]
 datas += [('version.py', '.')]
 datas += [('app.py', '.')]  # Main app file
 datas += [('ui_components.py', '.')]  # UI components file
+datas += [('streamlit_config.toml', '.streamlit/config.toml')]  # Streamlit production config
 
 # Collect hidden imports
 hiddenimports = []

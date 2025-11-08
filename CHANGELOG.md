@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Created proper launcher script to run Streamlit correctly
   - Added safe session state access using `.get()` method
   - Executable now launches properly without session state errors
+- **Critical:** Fixed development mode assertion error in production
+  - Created `streamlit_config.toml` with production-ready settings
+  - Disabled development mode globally (`global.developmentMode=false`)
+  - Configured launcher to use production settings via environment variables
+  - Disabled unnecessary security features (CORS/XSRF) for local desktop use
 - Fixed dependency conflict with `packaging` library version
   - Changed to `packaging<24,>=16.8` to match Streamlit's requirements
 - Fixed PyInstaller build error for packages without metadata (validators)
@@ -35,6 +40,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed entry point from `app.py` to `launcher.py` for proper Streamlit initialization
 - Disabled console window for better user experience (Streamlit opens in browser automatically)
 - Improved error handling and session state initialization to prevent crashes
+- Configured Streamlit for production mode with optimized settings:
+  - Disabled development mode warnings
+  - Minimized logging (error level only)
+  - Disabled usage statistics collection
+  - Optimized toolbar display
 
 ---
 

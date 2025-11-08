@@ -1,0 +1,23 @@
+# Streamlit Configuration for Production
+# This file ensures the app runs in production mode
+
+[global]
+developmentMode = false
+showWarningOnDirectExecution = false
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+port = 8501
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[logger]
+level = "error"
+
+[client]
+showErrorDetails = false
+toolbarMode = "minimal"
