@@ -1,0 +1,177 @@
+name: 💡 Feature Request
+description: Suggest a new feature or enhancement for Converso Downloader
+title: "[FEATURE] "
+labels: ["enhancement", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Feature Request
+        
+        Thank you for suggesting a new feature! Your ideas help make Converso Downloader better for everyone.
+        
+        **Before submitting:**
+        - Search existing feature requests to avoid duplicates
+        - Check if the feature aligns with the project goals
+        - Consider if this could be implemented as a plugin/extension
+        
+        ---
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - New Download Feature
+        - UI/UX Enhancement
+        - Performance Improvement
+        - New Platform Support
+        - Search Functionality
+        - Format/Quality Option
+        - Settings/Configuration
+        - Automation/Scheduling
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented.
+      placeholder: |
+        I would like to see...
+        
+        This feature would work by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or features?
+      placeholder: |
+        Alternative 1: ...
+        Alternative 2: ...
+        
+        Why the proposed solution is better: ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Describe specific scenarios where this feature would be useful.
+      placeholder: |
+        Use Case 1: When downloading playlists...
+        Use Case 2: When searching for videos...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Critical - Prevents me from using the app
+        - High - Would significantly improve my workflow
+        - Medium - Would be nice to have
+        - Low - Just a suggestion
+    validations:
+      required: true
+
+  - type: dropdown
+    id: willing-to-help
+    attributes:
+      label: Contribution
+      description: Are you willing to help implement this feature?
+      options:
+        - Yes, I can submit a pull request
+        - Yes, I can help with testing
+        - Yes, I can help with documentation
+        - No, but I can provide feedback
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockup
+    attributes:
+      label: Mockups / Examples
+      description: |
+        If applicable, add mockups, screenshots, or examples from other applications.
+        Tip: You can attach images by dragging & dropping them here.
+      placeholder: "Attach images or provide links to examples..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical
+    attributes:
+      label: Technical Considerations
+      description: Any technical details or implementation ideas?
+      placeholder: |
+        - This could be implemented using...
+        - Dependencies needed: ...
+        - Potential challenges: ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context or information about the feature request.
+      placeholder: "Any other details that might be helpful..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for similar feature requests
+          required: true
+        - label: This feature aligns with the project goals (YouTube downloader)
+          required: true
+        - label: I have provided clear use cases
+          required: true
+        - label: I understand this is maintained by volunteers
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🌟 Thank You!
+        
+        Your feature request will be reviewed by the **Converso Empire** team.
+        
+        - Feature requests are evaluated based on:
+          - Alignment with project goals
+          - Technical feasibility
+          - Benefit to the community
+          - Available resources
+        
+        - Not all features can be implemented immediately
+        - Community contributions are always welcome!
+        
+        **© 2025 Converso Empire. All rights reserved.**

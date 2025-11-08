@@ -756,21 +756,16 @@ def render_footer():
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.divider()
     
-    st.markdown(f"""
+    st.markdown("""
         <div style="text-align: center; padding: 1rem; color: #64748b;">
             <p style="margin: 0.5rem 0;">
-                <strong style="color: #94a3b8;">Converso Downloader</strong> v{__version__}
+                <strong style="color: #94a3b8;">Converso Downloader</strong> v2.0
             </p>
             <p style="margin: 0.5rem 0; font-size: 0.875rem;">
                 Powered by yt-dlp • FFmpeg • Streamlit
             </p>
-            <p style="margin: 0.5rem 0; font-size: 0.875rem;">
-                Created by <strong><a href="https://github.com/Converso-Empire" target="_blank" style="color: #3b82f6; text-decoration: none;">Converso Empire</a></strong>
-            </p>
             <p style="margin-top: 1rem; font-size: 0.75rem; color: #475569;">
-                {__copyright__}<br>
-                All Converso Empire projects are protected under the Converso Empire License (CEL).<br>
-                Unauthorized reproduction or redistribution is strictly prohibited.
+                © 2024 Converso Downloader. For personal use only. Respect copyright laws.
             </p>
         </div>
     """, unsafe_allow_html=True)

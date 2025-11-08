@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/Converso-Empire/converso-downloader/blob/main/README.md
+    about: Read the complete documentation and user guide
+  - name: 💬 Discussions
+    url: https://github.com/Converso-Empire/converso-downloader/discussions
+    about: Join community discussions, share tips, and ask general questions
+  - name: ⭐ Star this Project
+    url: https://github.com/Converso-Empire/converso-downloader
+    about: Show your support by starring the repository
+  - name: 🏢 Converso Empire
+    url: https://github.com/Converso-Empire
+    about: Check out other projects by Converso Empire

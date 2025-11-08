@@ -1,0 +1,178 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with Converso Downloader
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Bug Report
+        
+        Thank you for taking the time to report a bug! Please fill out the information below to help us resolve the issue quickly.
+        
+        **Before submitting:**
+        - Search existing issues to avoid duplicates
+        - Make sure you're using the latest version
+        - Check if the issue is related to yt-dlp or FFmpeg
+        
+        ---
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Which version of Converso Downloader are you using?
+      placeholder: "v2.1.3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you using?
+      options:
+        - Windows 10
+        - Windows 11
+        - macOS (Intel)
+        - macOS (Apple Silicon)
+        - Linux (Ubuntu/Debian)
+        - Linux (Fedora/RHEL)
+        - Linux (Arch)
+        - Other Linux
+        - Running from Source
+    validations:
+      required: true
+
+  - type: dropdown
+    id: installation
+    attributes:
+      label: Installation Method
+      description: How did you install Converso Downloader?
+      options:
+        - Pre-built executable (from releases)
+        - Built from source
+        - Running with Python directly
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: "When I try to download a video, the application crashes with..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the issue.
+      placeholder: |
+        1. Open Converso Downloader
+        2. Search for '...'
+        3. Click on '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: "The video should download successfully..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: "Instead, the application shows an error..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs / Screenshots
+      description: |
+        Please provide any error messages, logs, or screenshots.
+        Tip: You can attach images by dragging & dropping them here.
+      placeholder: |
+        Paste error messages or logs here...
+        
+        If running from source, check the terminal/console output.
+    validations:
+      required: false
+
+  - type: input
+    id: video-url
+    attributes:
+      label: Video URL (if applicable)
+      description: If the issue is with a specific video, please provide the URL
+      placeholder: "https://youtube.com/watch?v=..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: ffmpeg
+    attributes:
+      label: FFmpeg Status
+      description: Is FFmpeg installed and working?
+      options:
+        - Using bundled FFmpeg (from release package)
+        - FFmpeg installed separately
+        - FFmpeg not installed
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
+      placeholder: |
+        - Internet connection speed
+        - Antivirus software
+        - Firewall settings
+        - Other relevant information
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing issues
+          required: true
+        - label: I am using the latest version of Converso Downloader
+          required: true
+        - label: I have read the documentation
+          required: false
+        - label: I have provided all required information
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 📝 Note
+        
+        This project is created and maintained by **Converso Empire**.
+        
+        - Issues are reviewed regularly
+        - Please be patient and respectful
+        - We appreciate your contribution to making this project better!
+        
+        **© 2025 Converso Empire. All rights reserved.**
