@@ -11,8 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Critical:** Fixed `importlib.metadata.PackageNotFoundError` in PyInstaller builds
   - Added metadata collection for Streamlit and all dependencies in the .spec file
   - Users can now run the Windows executable without metadata errors
+  - Added safe metadata collection to handle packages without metadata
 - Fixed dependency conflict with `packaging` library version
   - Changed to `packaging<24,>=16.8` to match Streamlit's requirements
+- Fixed PyInstaller build error for packages without metadata (validators)
+  - Implemented `safe_copy_metadata()` helper function to gracefully skip packages without metadata
 
 ### Added
 - **Automatic Update Checker:** Application now checks for new releases on startup

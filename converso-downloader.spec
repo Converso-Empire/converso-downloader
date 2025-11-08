@@ -10,22 +10,30 @@ import os
 
 block_cipher = None
 
+# Helper function to safely copy metadata
+def safe_copy_metadata(package_name):
+    """Safely copy package metadata, ignoring if not found"""
+    try:
+        return copy_metadata(package_name)
+    except Exception as e:
+        print(f"Warning: Could not collect metadata for {package_name}: {e}")
+        return []
+
 # Collect all necessary data files
 datas = []
 datas += collect_data_files('streamlit')
 datas += collect_data_files('streamlit_option_menu', include_py_files=True)
 datas += collect_data_files('altair')
-datas += collect_data_files('validators')
 
 # Collect package metadata (required for importlib.metadata)
-datas += copy_metadata('streamlit')
-datas += copy_metadata('altair')
-datas += copy_metadata('validators')
-datas += copy_metadata('streamlit_option_menu')
-datas += copy_metadata('yt-dlp')
-datas += copy_metadata('Pillow')
-datas += copy_metadata('requests')
-datas += copy_metadata('packaging')
+# Only collect metadata for packages that have it
+datas += safe_copy_metadata('streamlit')
+datas += safe_copy_metadata('altair')
+datas += safe_copy_metadata('yt-dlp')
+datas += safe_copy_metadata('Pillow')
+datas += safe_copy_metadata('requests')
+datas += safe_copy_metadata('packaging')
+datas += safe_copy_metadata('streamlit-option-menu')  # Try with dash instead of underscore
 
 # Add project directories
 datas += [('config', 'config')]
