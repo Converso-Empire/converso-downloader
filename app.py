@@ -1,7 +1,7 @@
 """
 Converso Downloader - Main Application
 Professional YouTube downloader with smart search
-Version: 2.1.3
+Version: 2.1.4
 
 Created by Converso Empire
 https://github.com/Converso-Empire
@@ -19,6 +19,7 @@ from version import __version__, __app_name__, __description__
 from utils.downloader import VideoInfoExtractor, VideoDownloader, PlaylistExtractor
 from utils.format_handler import FormatProcessor
 from utils.file_utils import FileManager
+from utils.update_checker import UpdateChecker
 from config.settings import SettingsManager
 
 # Import UI components
@@ -53,11 +54,32 @@ def init_session_state():
         'download_queue': [],
         'recent_urls': [],
         'batch_urls': [],
+        'update_checked': False,
+        'update_available': False,
+        'update_info': None,
     }
     
     for key, value in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = value
+
+
+def check_for_updates():
+    """Check for application updates"""
+    if not st.session_state.update_checked:
+        try:
+            from version import __version__, __repo__
+            checker = UpdateChecker(__version__, __repo__)
+            update_available, release_info = checker.check_for_updates()
+            
+            st.session_state.update_checked = True
+            st.session_state.update_available = update_available
+            st.session_state.update_info = release_info
+            
+        except Exception as e:
+            # Silently fail if update check doesn't work
+            st.session_state.update_checked = True
+            pass
 
 
 def main():
@@ -68,6 +90,16 @@ def main():
     # Initialize session state
     if 'initialized' not in st.session_state:
         init_session_state()
+    
+    # Check for updates (only once per session)
+    check_for_updates()
+    
+    # Display update notification if available
+    if st.session_state.update_available and st.session_state.update_info:
+        from version import __version__
+        checker = UpdateChecker(__version__, "https://github.com/Converso-Empire/converso-downloader")
+        update_message = checker.format_update_message(st.session_state.update_info)
+        st.info(update_message, icon="🎉")
     
     # Initialize settings manager
     settings = SettingsManager()

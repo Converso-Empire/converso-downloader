@@ -3,7 +3,7 @@ Version information for Converso Downloader
 © 2025 Converso Empire. All rights reserved.
 """
 
-__version__ = "2.1.3"
+__version__ = "2.1.4"
 __app_name__ = "Converso Downloader"
 __description__ = "Professional YouTube Downloader with Smart Search"
 __author__ = "Converso Empire"
@@ -14,7 +14,7 @@ __build_date__ = "2024-11"
 # Version components
 VERSION_MAJOR = 2
 VERSION_MINOR = 1
-VERSION_PATCH = 3
+VERSION_PATCH = 4
 
 # Build information
 BUILD_TYPE = "Production"
