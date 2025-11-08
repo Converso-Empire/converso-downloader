@@ -5,13 +5,17 @@ All notable changes to Converso Downloader will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.1.4] - 2024-11-08
+## [2.1.4] - 2025-11-08
 
 ### Fixed
 - **Critical:** Fixed `importlib.metadata.PackageNotFoundError` in PyInstaller builds
   - Added metadata collection for Streamlit and all dependencies in the .spec file
   - Users can now run the Windows executable without metadata errors
   - Added safe metadata collection to handle packages without metadata
+- **Critical:** Fixed session state initialization errors when running executable
+  - Created proper launcher script to run Streamlit correctly
+  - Added safe session state access using `.get()` method
+  - Executable now launches properly without session state errors
 - Fixed dependency conflict with `packaging` library version
   - Changed to `packaging<24,>=16.8` to match Streamlit's requirements
 - Fixed PyInstaller build error for packages without metadata (validators)
@@ -28,10 +32,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Updated PyInstaller spec file with comprehensive metadata collection
 - Enhanced session state to track update checking status
+- Changed entry point from `app.py` to `launcher.py` for proper Streamlit initialization
+- Disabled console window for better user experience (Streamlit opens in browser automatically)
+- Improved error handling and session state initialization to prevent crashes
 
 ---
 
-## [2.1.3] - 2024-11
+## [2.1.3] - 2025-11
 
 ### Added
 - Initial public release

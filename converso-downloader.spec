@@ -35,10 +35,12 @@ datas += safe_copy_metadata('requests')
 datas += safe_copy_metadata('packaging')
 datas += safe_copy_metadata('streamlit-option-menu')  # Try with dash instead of underscore
 
-# Add project directories
+# Add project directories and files
 datas += [('config', 'config')]
 datas += [('utils', 'utils')]
 datas += [('version.py', '.')]
+datas += [('app.py', '.')]  # Main app file
+datas += [('ui_components.py', '.')]  # UI components file
 
 # Collect hidden imports
 hiddenimports = []
@@ -49,7 +51,7 @@ hiddenimports += ['urllib3', 'certifi', 'chardet', 'idna']
 hiddenimports += ['brotli', 'pycryptodomex', 'websockets', 'mutagen']
 
 a = Analysis(
-    ['app.py'],
+    ['launcher.py'],  # Use launcher instead of app.py directly
     pathex=[],
     binaries=[],
     datas=datas,
@@ -57,7 +59,7 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['matplotlib', 'numpy', 'pandas', 'scipy'],  # Exclude unused heavy packages
+    excludes=['matplotlib', 'pandas', 'scipy'],  # Exclude unused heavy packages (keep numpy for streamlit)
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=block_cipher,
@@ -83,7 +85,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,  # Show console for error messages
+    console=False,  # Hide console for better user experience (Streamlit will open browser)
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,

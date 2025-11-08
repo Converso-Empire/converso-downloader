@@ -66,8 +66,9 @@ def init_session_state():
 
 def check_for_updates():
     """Check for application updates"""
-    if not st.session_state.update_checked:
-        try:
+    try:
+        # Safely check if update_checked exists
+        if not st.session_state.get('update_checked', False):
             from version import __version__, __repo__
             checker = UpdateChecker(__version__, __repo__)
             update_available, release_info = checker.check_for_updates()
@@ -75,11 +76,11 @@ def check_for_updates():
             st.session_state.update_checked = True
             st.session_state.update_available = update_available
             st.session_state.update_info = release_info
-            
-        except Exception as e:
-            # Silently fail if update check doesn't work
+    except Exception as e:
+        # Silently fail if update check doesn't work
+        if 'update_checked' not in st.session_state:
             st.session_state.update_checked = True
-            pass
+        pass
 
 
 def main():
@@ -87,15 +88,14 @@ def main():
     # Inject custom CSS
     inject_custom_css()
     
-    # Initialize session state
-    if 'initialized' not in st.session_state:
-        init_session_state()
+    # Always initialize session state first
+    init_session_state()
     
     # Check for updates (only once per session)
     check_for_updates()
     
     # Display update notification if available
-    if st.session_state.update_available and st.session_state.update_info:
+    if st.session_state.get('update_available', False) and st.session_state.get('update_info'):
         from version import __version__
         checker = UpdateChecker(__version__, "https://github.com/Converso-Empire/converso-downloader")
         update_message = checker.format_update_message(st.session_state.update_info)

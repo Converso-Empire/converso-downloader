@@ -73,6 +73,7 @@ jobs:
           mkdir release\ffmpeg
           copy dist\ConversoDownloader.exe release\
           copy README.md release\
+          copy HOW_TO_RUN.txt release\
           copy "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffmpeg.exe" release\ffmpeg\
           copy "C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\ffprobe.exe" release\ffmpeg\
           echo FFmpeg binaries included in ffmpeg folder > release\FFMPEG_INCLUDED.txt
@@ -85,6 +86,7 @@ jobs:
           cp dist/ConversoDownloader release/
           chmod +x release/ConversoDownloader
           cp README.md release/
+          cp HOW_TO_RUN.txt release/
           cp /usr/bin/ffmpeg release/ffmpeg/
           cp /usr/bin/ffprobe release/ffmpeg/
           chmod +x release/ffmpeg/*
@@ -98,6 +100,7 @@ jobs:
           cp dist/ConversoDownloader release/
           chmod +x release/ConversoDownloader
           cp README.md release/
+          cp HOW_TO_RUN.txt release/
           cp $(which ffmpeg) release/ffmpeg/
           cp $(which ffprobe) release/ffmpeg/
           chmod +x release/ffmpeg/*

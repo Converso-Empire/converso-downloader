@@ -1,0 +1,54 @@
+================================================================================
+             CONVERSO DOWNLOADER - HOW TO RUN
+================================================================================
+
+Windows Users:
+--------------
+1. Double-click ConversoDownloader.exe
+2. The application will automatically open in your default web browser
+3. If the browser doesn't open automatically, manually navigate to:
+   http://localhost:8501
+
+Linux/macOS Users:
+------------------
+1. Open terminal in the application folder
+2. Make the file executable (first time only):
+   chmod +x ConversoDownloader
+3. Run the application:
+   ./ConversoDownloader
+4. The application will automatically open in your default web browser
+5. If the browser doesn't open automatically, manually navigate to:
+   http://localhost:8501
+
+Troubleshooting:
+----------------
+- If the browser doesn't open automatically, wait a few seconds and then
+  manually open http://localhost:8501 in your web browser
+  
+- If you see a firewall warning, allow the application to run
+
+- To stop the application, close the browser tab and the console window
+  (or press Ctrl+C in the terminal on Linux/macOS)
+
+- If port 8501 is already in use, the application may use a different port.
+  Check the console output for the actual port number.
+
+System Requirements:
+--------------------
+- Windows 10 or later / Linux / macOS
+- 4 GB RAM (8 GB recommended)
+- Active internet connection
+- Modern web browser (Chrome, Firefox, Edge, Safari)
+
+FFmpeg:
+-------
+FFmpeg binaries are included in the "ffmpeg" folder and will be used
+automatically for format conversions.
+
+Support:
+--------
+For issues, visit: https://github.com/Converso-Empire/converso-downloader/issues
+
+================================================================================
+© 2025 Converso Empire. All rights reserved.
+================================================================================
