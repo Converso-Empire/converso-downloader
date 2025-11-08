@@ -48,6 +48,9 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
+# Conditionally set icon if it exists
+icon_path = 'assets/icon.ico' if sys.platform == 'win32' and os.path.exists('assets/icon.ico') else None
+
 exe = EXE(
     pyz,
     a.scripts,
@@ -68,5 +71,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/icon.ico' if sys.platform == 'win32' else None,
+    icon=icon_path,
 )
