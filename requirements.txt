@@ -2,5 +2,5 @@ streamlit==1.32.0
 yt-dlp==2024.3.10
 Pillow==10.2.0
 requests==2.31.0
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
 packaging<24,>=16.8
